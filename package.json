@@ -1,0 +1,24 @@
+{
+	"name": "enjoyable_stack",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"private": true,
+	"devDependencies": {
+		"prisma": "^4.7.1"
+	},
+	"workspaces": [
+		"apps/*",
+		"libs/*",
+		"services/*"
+	],
+	"scripts": {
+		"prisma:generate": "prisma generate"
+	},
+	"prisma": {
+		"schema": "./libs/prisma/schema.prisma"
+	}
+}
