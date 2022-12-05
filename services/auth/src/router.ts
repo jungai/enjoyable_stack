@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const t = initTRPC.context<Context>().create();
 
-export const authRouter = t.router({
+export const appRouter = t.router({
 	register: t.procedure
 		.input(
 			z.object({
@@ -14,40 +14,45 @@ export const authRouter = t.router({
 			})
 		)
 		.mutation(async ({ input, ctx }) => {
-			const found = await ctx.prisma.user.findUnique({
-				where: { username: input.username },
-			});
-
-			if (!found) {
-				// TODO: move to libs
-				throw new TRPCError({
-					code: "INTERNAL_SERVER_ERROR",
-					message: "USER IS EXIST",
+			try {
+				const found = await ctx.prisma.user.findUnique({
+					where: { username: input.username },
 				});
-			}
-			const round = 10;
-			const password = await bcrypt.hash(input.password, round);
 
-			const user = await ctx.prisma.user.create({
-				data: {
-					username: input.username,
-					password: password,
-					createdAt: Date.now(),
-					updatedAt: Date.now(),
-				},
-			});
+				if (found) {
+					// TODO: move to libs
+					throw new TRPCError({
+						code: "INTERNAL_SERVER_ERROR",
+						message: "USER IS EXIST",
+					});
+				}
+				const round = 10;
+				const password = await bcrypt.hash(input.password, round);
 
-			if (!user) {
-				throw new TRPCError({
-					code: "INTERNAL_SERVER_ERROR",
-					message: "CAN'T CREATE USER",
+				const user = await ctx.prisma.user.create({
+					data: {
+						username: input.username,
+						password: password,
+						createdAt: Date.now(),
+						updatedAt: Date.now(),
+					},
 				});
-			}
 
-			return {
-				success: true,
-			};
+				if (!user) {
+					throw new TRPCError({
+						code: "INTERNAL_SERVER_ERROR",
+						message: "CAN'T CREATE USER",
+					});
+				}
+
+				return {
+					success: true,
+				};
+			} catch (error) {
+				// TODO: global error
+				console.log("error ->", error);
+			}
 		}),
 });
 
-export type authRouter = typeof authRouter;
+export type appRouter = typeof appRouter;
