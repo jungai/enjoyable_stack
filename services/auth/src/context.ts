@@ -1,8 +1,8 @@
 import { inferAsyncReturnType } from "@trpc/server";
-import trpcNext from "@trpc/server/adapters/next";
+import { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify";
 import { PrismaClient } from "@prisma/client";
 
-export async function createContext(_?: trpcNext.CreateNextContextOptions) {
+export async function createContext(_ctx: CreateFastifyContextOptions) {
 	const prisma = new PrismaClient();
 
 	return {

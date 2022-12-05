@@ -2,9 +2,8 @@
 	"name": "auth",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
-	"keywords": [],
-	"author": "",
+	"types": "dist/app.d.ts",
+	"author": "jungai",
 	"license": "ISC",
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.0",
@@ -15,6 +14,10 @@
 		"@prisma/client": "^4.7.1",
 		"@trpc/server": "^10.4.3",
 		"bcrypt": "^5.1.0",
+		"fastify": "^4.10.2",
 		"zod": "^3.19.1"
+	},
+	"scripts": {
+		"build": "tsc -p ./tsconfig.json"
 	}
 }

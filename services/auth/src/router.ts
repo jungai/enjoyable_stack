@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const t = initTRPC.context<Context>().create();
 
-const appRouter = t.router({
+export const authRouter = t.router({
 	register: t.procedure
 		.input(
 			z.object({
@@ -50,4 +50,4 @@ const appRouter = t.router({
 		}),
 });
 
-export type authRouter = typeof appRouter;
+export type authRouter = typeof authRouter;
