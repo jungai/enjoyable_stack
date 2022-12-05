@@ -12,13 +12,12 @@
 	},
 	"workspaces": [
 		"apps/*",
-		"libs/*",
 		"services/*"
 	],
 	"scripts": {
 		"prisma:generate": "prisma generate"
 	},
 	"prisma": {
-		"schema": "./libs/prisma/schema.prisma"
+		"schema": "./prisma/schema.prisma"
 	}
 }
