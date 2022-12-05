@@ -1,5 +1,5 @@
 {
-	"name": "kanom",
+	"name": "@aa/kanom",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -12,6 +12,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@aa/auth": "*",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -33,8 +34,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@trpc/client": "^10.4.3",
-		"@trpc/server": "^10.4.3",
-		"trpc-sveltekit": "^3.0.5"
+		"@trpc/client": "^10.4.3"
 	}
 }
