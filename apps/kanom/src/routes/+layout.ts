@@ -1,4 +1,4 @@
-import install from '@twind/with-sveltekit'
-import config from '../twind.config'
+import install from '@twind/with-sveltekit';
+import config from '../twind.config';
 
-install(config)
+install(config);

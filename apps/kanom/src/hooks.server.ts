@@ -1,3 +1,3 @@
-import handleTwind from '@twind/with-sveltekit/hooks'
+import handleTwind from '@twind/with-sveltekit/hooks';
 
-export const handle = handleTwind()
+export const handle = handleTwind();
