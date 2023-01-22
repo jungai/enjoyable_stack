@@ -11,10 +11,6 @@
 		"@prisma/client": "^4.9.0",
 		"prisma": "^4.9.0"
 	},
-	"workspaces": [
-		"apps/*",
-		"services/*"
-	],
 	"scripts": {
 		"prisma:push": "prisma db push",
 		"prisma:generate": "prisma generate",
