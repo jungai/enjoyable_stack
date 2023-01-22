@@ -15,6 +15,7 @@
 		"services/*"
 	],
 	"scripts": {
+		"prisma:push": "prisma db push",
 		"prisma:generate": "prisma generate"
 	},
 	"prisma": {
