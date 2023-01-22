@@ -8,7 +8,8 @@
 	"license": "ISC",
 	"private": true,
 	"devDependencies": {
-		"prisma": "^4.7.1"
+		"@prisma/client": "^4.9.0",
+		"prisma": "^4.9.0"
 	},
 	"workspaces": [
 		"apps/*",
@@ -16,7 +17,8 @@
 	],
 	"scripts": {
 		"prisma:push": "prisma db push",
-		"prisma:generate": "prisma generate"
+		"prisma:generate": "prisma generate",
+		"update:deps": "npx taze -r"
 	},
 	"prisma": {
 		"schema": "./prisma/schema.prisma"
