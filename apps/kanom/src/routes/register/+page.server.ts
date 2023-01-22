@@ -1,4 +1,5 @@
-import type { Actions } from '@sveltejs/kit';
+import { trpc } from '$lib/trpc';
+import { type Actions, fail, error } from '@sveltejs/kit';
 import { z } from 'zod';
 
 const registerSchema = z
@@ -39,23 +40,26 @@ export const actions: Actions = {
 			const rawData = Object.fromEntries(await request.formData());
 			const result = registerSchema.safeParse(rawData);
 
-			if (result.success) {
-				return {
-					success: true
-				};
+			if (!result.success) {
+				const { fieldErrors: errors } = result.error.flatten();
+				const { password, confirmPassword, ...rest } = rawData;
+
+				return fail(400, {
+					data: rest,
+					errors: errors
+				});
 			}
+			const {
+				data: { username, password }
+			} = result;
 
-			const { fieldErrors: errors } = result.error.flatten();
-			const { password, confirmPassword, ...rest } = rawData;
+			const resp = await trpc().register.mutate({ username, password });
 
-			return {
-				data: rest,
-				errors: errors
-			};
-		} catch (error) {
-			console.log('error ->', error);
-
-			// TODO: handle error in sveltekit
+			if (resp.success) {
+				return { success: true };
+			}
+		} catch (err) {
+			throw error(500, { message: '${err}' });
 		}
 	}
 };
