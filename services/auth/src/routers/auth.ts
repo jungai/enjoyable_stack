@@ -1,12 +1,10 @@
-import { initTRPC, TRPCError } from "@trpc/server";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { Context } from "./context";
+import { router, publicProcedure } from "../trpc";
 import bcrypt from "bcrypt";
 
-const t = initTRPC.context<Context>().create();
-
-export const appRouter = t.router({
-	register: t.procedure
+export const authRouter = router({
+	register: publicProcedure
 		.input(
 			z.object({
 				username: z.string(),
@@ -54,5 +52,3 @@ export const appRouter = t.router({
 			}
 		}),
 });
-
-export type appRouter = typeof appRouter;
