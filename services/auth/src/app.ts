@@ -1,9 +1,8 @@
 import "dotenv/config";
-import { createHTTPServer } from "@trpc/server/adapters/standalone";
-import { appRouter } from "./routers";
-import { createContext } from "./context";
+import { app } from "./express";
 
-createHTTPServer({
-	router: appRouter,
-	createContext,
-}).listen(2022);
+const PORT = process.env.PORT ?? 3000;
+
+app.listen(PORT, () => {
+	console.log(`server start on port ${PORT}`);
+});
