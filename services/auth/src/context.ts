@@ -1,6 +1,6 @@
 import { inferAsyncReturnType } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 export async function createContext(
 	_ctx: trpcExpress.CreateExpressContextOptions
