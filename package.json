@@ -8,8 +8,8 @@
 	"license": "ISC",
 	"private": true,
 	"devDependencies": {
-		"@prisma/client": "^4.9.0",
-		"prisma": "^4.9.0"
+		"@prisma/client": "^4.14.1",
+		"prisma": "^4.14.1"
 	},
 	"scripts": {
 		"prisma:push": "prisma db push",
